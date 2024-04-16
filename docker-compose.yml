@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD: shivan # Replace with your desired password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: shivan  # Replace with your desired database name
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Persistent storage for database
+
+  app:
+    build: .
+    ports:
+      - "8090:8090"
+    depends_on:
+      - postgres
